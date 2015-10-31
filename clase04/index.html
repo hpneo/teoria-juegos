@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ejercicio 4</title>
+    <script src="phaser.js"></script>
+    <script src="boot.js"></script>
+    <script src="menu.js"></script>
+    <script src="preload.js"></script>
+    <script src="game.js"></script>
+  </head>
+  <body>
+    <div id="game"></div>
+    <script>
+      var game = new Phaser.Game(1024, 768, Phaser.AUTO, 'game');
+
+      game.state.add('Boot', Boot);
+      game.state.add('Preload', Preload);
+      game.state.add('Menu', Menu);
+      game.state.add('Game', Game);
+      game.state.start('Boot');
+    </script>
+  </body>
+</html>

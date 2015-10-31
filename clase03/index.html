@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ejercicio 3</title>
+    <script src="phaser.js"></script>
+    <style type="text/css">
+      body {
+      }
+    </style>
+  </head>
+  <body>
+    <div id="game"></div>
+    <script type="text/javascript">
+      var game, wheel,
+          slices = 8,
+          canSpin = true,
+          prize = 0,
+          prizes = [
+            'Llave',
+            '50 estrellas',
+            '500 estrellas',
+            'Perdiste',
+            '200 estrellas',
+            '100 estrellas',
+            '150 estrellas',
+            'Perdiste'
+          ];
+
+      function preload() {
+        game.load.image('pin', 'assets/pin.png');
+        game.load.image('wheel', 'assets/wheel.png');
+      }
+
+      function create() {
+        wheel = game.add.sprite(game.width / 2, game.height / 2, 'wheel');
+        wheel.anchor.setTo(0.5, 0.5);
+
+        pin = game.add.sprite(game.width / 2, game.height / 2, 'pin');
+        pin.anchor.setTo(0.5, 0.5);
+        pin.inputEnabled = true;
+        pin.events.onInputDown.add(spinWheel, this);
+      }
+
+      function update() {
+
+      }
+
+      function spinWheel() {
+        if (canSpin) {
+          canSpin = false;
+
+          var rounds = game.rnd.between(2, 4),
+              degrees = game.rnd.between(0, 360);
+
+          prize = slices - 1 - Math.floor(degrees / (360 / slices));
+
+          var spinTween = game.add.tween(wheel).to({
+            angle: 360 * rounds + degrees
+          }, 3000, Phaser.Easing.Quadratic.Out);
+
+          spinTween.start();
+
+          spinTween.onComplete.add(winPrize, this);
+        }
+      }
+
+      function winPrize() {
+        canSpin = true;
+        console.log(prizes[prize]);
+      }
+
+      game = new Phaser.Game(458, 488, Phaser.AUTO, 'game', { preload: preload, create: create, update: update });
+    </script>
+  </body>
+</html>

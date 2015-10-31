@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ejercicio 1</title>
+    <script src="phaser.js" charset="utf-8"></script>
+  </head>
+  <body>
+    <div id="game"></div>
+    <script type="text/javascript">
+      var game, hero, directionX = 1, directionY = 1;
+
+      function preload() {
+        game.load.image('blastoise', 'img/009.png');
+        console.log('preload');
+      }
+      function create() {
+        hero = game.add.sprite(10, 10, 'blastoise');
+        hero.x = 50;
+        hero.y = 50;
+
+        console.log('create');
+      }
+      function update() {
+        if (hero.x > (game.width - hero.width) || hero.x < 0) {
+          directionX *= -1;
+        }
+
+        if (hero.y > (game.height - hero.height) || hero.y < 0) {
+          directionY *= -1;
+        }
+
+        hero.x += (5 * directionX);
+        hero.y += (5 * directionY);
+        console.log('update');
+      }
+
+      game = new Phaser.Game(800, 600, Phaser.AUTO, 'game', {
+        preload: preload,
+        create: create,
+        update: update
+      });
+    </script>
+  </body>
+</html>

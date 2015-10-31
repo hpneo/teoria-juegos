@@ -1,0 +1,22 @@
+<html>
+<head>
+	<script type='text/javascript' src='phaser.min.js'></script>
+	<script type='text/javascript' src='Boost.js'></script>
+	<script type='text/javascript' src='Preloader.js'></script>
+	<script type='text/javascript' src='Menu.js'></script>
+	<script type='text/javascript' src='Game.js'></script>
+	<title>Hungry Hero</title>
+</head>
+<body>
+<script type='text/javascript'>
+	window.onload = function(){
+		var game = new Phaser.Game(1024,768,Phaser.AUTO);
+		game.state.add('Boost',Boost);
+		game.state.add('Preloader',Preloader);
+		game.state.add('Menu',Menu);
+		game.state.add('Game',Game);
+		game.state.start('Boost');
+	}
+</script>
+</body>
+</html>
