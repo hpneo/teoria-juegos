@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tanks</title>
+	<script type="text/javascript" src="phaser.min.js" ></script>
+	<script type="text/javascript" src="Tank.js"></script>
+  <script type="text/javascript" src="RemoteTank.js"></script>
+	<script type="text/javascript" src="Boost.js"></script>
+	<script type="text/javascript" src="Preloader.js"></script>
+	<script type="text/javascript" src="Game.js"></script>
+  <script src="http://hpneo.local:3000/socket.io/socket.io.js" charset="utf-8"></script>
+</head>
+<body>
+  <script type="text/javascript">
+    var game = new Phaser.Game(800,600,'',Phaser.AUTO);
+    game.state.add('Boost',Boost);
+    game.state.add('Preloader',Preloader);
+    game.state.add('Game',Game);
+    game.state.start('Boost');
+  </script>
+</body>
+</html>
