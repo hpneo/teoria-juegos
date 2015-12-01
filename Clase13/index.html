@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" src="phaser.min.js"></script>
+	<script type="text/javascript" src='Preloader.js'></script>
+	<script type="text/javascript" src='Game.js'></script>
+</head>
+<body>
+<script type="text/javascript">
+	window.onload = function(){
+		var game = new Phaser.Game(700,350,Phaser.AUTO);
+		var Global = {};
+		game.state.add('Preloader',Preloader);
+		game.state.add('Game',Game);
+		game.state.start('Preloader');
+	}
+</script>
+</body>
+</html>
